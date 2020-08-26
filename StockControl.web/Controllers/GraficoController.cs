@@ -6,17 +6,18 @@ using System.Web.Mvc;
 
 namespace StockControl.web.Controllers
 {
-    public class HomeController : Controller
+    public class GraficoController : Controller
     {
-        public ActionResult Index()
+        [Authorize]
+        public ActionResult Perdas()
         {
             return View();
         }
 
-        public ActionResult Sobre()
+        [Authorize]
+        public ActionResult EntradasSaidas()
         {
-             return View();
+            return View();
         }
-
     }
 }

@@ -6,17 +6,18 @@ using System.Web.Mvc;
 
 namespace StockControl.web.Controllers
 {
-    public class HomeController : Controller
+    public class RelatorioController : Controller
     {
-        public ActionResult Index()
+        [Authorize]
+        public ActionResult EstadoStock()
         {
             return View();
         }
 
-        public ActionResult Sobre()
+        [Authorize]
+        public ActionResult Reabastecer()
         {
-             return View();
+            return View();
         }
-
     }
 }
