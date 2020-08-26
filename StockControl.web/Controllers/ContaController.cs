@@ -28,7 +28,7 @@ namespace StockControl.web.Controllers
                 return View(login);
             }
 
-            var achou = (login.Utilizador == "leonel" && login.Senha == "123");
+            var achou = (login.Utilizador == "nuno" && login.Senha == "123");
 
             if(achou)
             {
@@ -49,6 +49,13 @@ namespace StockControl.web.Controllers
             }
             return View(login);
 
+        }
+        [HttpPost]
+        [AllowAnonymous]
+        public ActionResult LogOff()
+        {
+            FormsAuthentication.SignOut();
+            return RedirectToAction("Index", "Home");
         }
     }
 }
