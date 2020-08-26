@@ -23,9 +23,9 @@ textarea {
     max-width: 280px;
 }
 
-.container{
-    width: 4000px;
-    margin: auto;
+.conteiner-login{
+    width: 400px;
+    margin: 0 auto;
 }
 
 .titulo{
@@ -33,8 +33,3 @@ textarea {
     text-transform: uppercase;
 }
 
-.login{
-   align-content: center;
-   justify-content: center;
-
-}
