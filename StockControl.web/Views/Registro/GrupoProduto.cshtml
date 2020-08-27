@@ -79,7 +79,7 @@
          </div>
 </section>
 </div>
-<div id="modal_cadastro" class="form-horizontal" role="dialog"> 
+<div id="modal_cadastro" class="form-horizontal invisible" role="dialog"> 
     <fieldset>
         <div class="row">
             <div class="form-group">
@@ -115,7 +115,7 @@
         $(document).on('click', '#btn-incluir', function () {
             bootbox.dialog({
                 title: '@ViewBag.Title',
-                message: ''
+                message: $('modal_cadastro')
 
             });
 
