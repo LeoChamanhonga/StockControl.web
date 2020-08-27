@@ -12,8 +12,9 @@ namespace StockControl.web.Models
        {
             var ret = false;
             using (var conexao = new SqlConnection())
-            {
-                conexao.ConnectionString = "";
+            { 
+                //Descricao onde esta o acesso a Dados
+                conexao.ConnectionString = @"Data Source=DSKMPTT\CI_2014;Initial Catalog=stock;User Id=admin;Password=123";
                 conexao.Open();
 
                 using (var comando = new SqlCommand())
