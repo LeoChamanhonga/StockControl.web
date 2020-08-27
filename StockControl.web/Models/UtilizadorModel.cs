@@ -18,6 +18,10 @@ namespace StockControl.web.Models
                 using (var comando = new SqlCommand())
                 {
                     comando.Connection = conexao;
+
+                    //Qery especifica p SQl server
+                    comando.CommandText = string.Format(
+                        "select count(*) from utilizador where login='{0}' and senha='{1}'", login, senha);
                 }
             }
           
