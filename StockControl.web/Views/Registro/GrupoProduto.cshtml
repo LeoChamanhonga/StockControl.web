@@ -3,6 +3,35 @@
     ViewBag.Title = "Registo de Grupo de Produtos";
 }
 
+<style>
+    #cabecalho-grid > thead > tr th:nth-child(2){
+        width: 110px;
+    }
+
+    #grid-cadastro > thead > tr th:nth-child(3) {
+        width: 200px;
+    }
+
+    #registo{
+        width: 70%;
+        margin: auto;
+    }
+
+    #registo-cabecalho{
+        border-bottom: 1px #dddddd solid;
+    }
+
+    #registo-conteudo{
+        margin-top: 20px;
+    }
+
+    #cabecalho-grid{
+        margin-bottom: 20px;
+    }
+    
+
+</style>
+
 
 <div id="registo">
     <section id="registo-cabecalho">
@@ -10,47 +39,43 @@
 
     </section>
     <section id="registo-conteudo">
-        <div class="row">
-            <div class="col-md-12">
-                <div class="box">
-                    <div id="cabecalho-grid" class="row">
-                        <div class="col-md-12">
-                            <a id="btn-incluir" class="btn btn-success" role="button"><i class="glyphicon glyphicon-plus">Adicionar</i></a>
-                        </div>
-                    </div>
+        
+         <div id="cabecalho-grid" class="row">
+             <div class="col-md-12">
+                  <a id="btn-incluir" class="btn btn-success" role="button"><i class="glyphicon glyphicon-plus">Adicionar</i></a>
+             </div>
+         </div>
 
-                    <div class="row">
-                        <div class="col-md-12">
+         <div class="row">
+               <div class="col-md-12">
 
-                            <table id="grid-cadastro" class="table table-bordered table-striped table-hover">
-                                <thead>
-                                    <tr>
-                                        <th>Nome</th>
-                                        <th>Ativo</th>
-                                        <th>Acao</th>
-                                    </tr>
-                                </thead>
-                                <tbody>
-                                    @foreach (var item in Model)
-                                    {
-                                        <tr>
-                                            <td>@item.Nome</td>
-                                            <td>@{var ativo = (item.Ativo ? "SIM" : "NAO"); }@ativo</td>
+                    <table id="grid-cadastro" class="table table-bordered table-striped table-hover">
+                        <thead>
+                             <tr>
+                                <th>Nome</th>
+                                <th>Ativo</th>
+                                <th>Acao</th>
+                             </tr>
+                        </thead>
+                        <tbody>
+                            @foreach (var item in Model)
+                               {
+                                 <tr>
+                                    <td>@item.Nome</td>
+                                    <td>@{var ativo = (item.Ativo ? "SIM" : "NAO"); }@ativo</td>
 
-                                            <td>
+                                      <td>
+                                        <a class="btn btn-primary btn-alterar" role="button"><i class="glyphicon glyphicon-pencil"></i>Alterar</a>
+                                        <a class="btn btn-danger btn-excluir" role="button"><i class="glyphicon glyphicon-trash"></i>Excluir</a>
+                                      </td>
+                                 </tr>
 
-                                                <a class="btn btn-primary btn-alterar" role="button"><i class="glyphicon glyphicon-pencil"></i>Alterar</a>
-                                                <a class="btn btn-danger btn-excluir" role="button"><i class="glyphicon glyphicon-trash"></i>Excluir</a>
-                                            </td>
-                                        </tr>
+                             }
 
-                                    }
-
-                                </tbody>
-                            </table>
-                        </div>
-                    </div>
-                </div>
-            </div>
+                        </tbody>
+                    </table>
+         
+               </div>
+         </div>
 </section>
 </div>
