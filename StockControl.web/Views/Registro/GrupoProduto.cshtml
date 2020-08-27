@@ -114,7 +114,10 @@
             bootbox.dialog({
                 title: '@ViewBag.Title',
                 message: $('#modal_registro')
-            });
+            })
+                .on('show.bs.modal', function () {
+                    $('#modal_registro').show();
+                 });
         })
         .on('click', '.btn_alterar', function () {
               alert('2')
