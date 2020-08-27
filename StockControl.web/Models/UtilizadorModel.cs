@@ -12,7 +12,9 @@ namespace StockControl.web.Models
        {
             using (var conexao = new SqlConnection())
             {
-               
+                conexao.ConnectionString = "";
+                conexao.Open();
+
             }
           
        }
