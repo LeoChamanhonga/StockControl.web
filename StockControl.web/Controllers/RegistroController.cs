@@ -1,4 +1,5 @@
-﻿using System;
+﻿using StockControl.web.Models;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Web;
@@ -8,10 +9,19 @@ namespace StockControl.web.Controllers
 {
     public class RegistroController : Controller
     {
+        private static List<GrupoProdutoModel> _listaGrupoProduto = new List<GrupoProdutoModel>()
+        {
+            new GrupoProdutoModel() { Id=1, Nome="Livros", Ativo=true},
+            new GrupoProdutoModel() { Id=2, Nome="Canetas", Ativo=true},
+            new GrupoProdutoModel() { Id=3, Nome="PC", Ativo=false}
+
+        };
+
         [Authorize]
         public ActionResult GrupoProduto()
         {
-            return View();
+           
+            return View(_listaGrupoProduto);
         }
 
         [Authorize]
