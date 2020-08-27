@@ -82,6 +82,16 @@
 
 @section Scripts{
     <script>
-        $(document)
+        $(document).on('click', '#btn-incluir', function () {
+            alert('1')
+
+        })
+        .on('click', '.btn-alterar', function () {
+                alert('2')
+          })
+            .on('click', '.btn-excluir', function () {
+                alert('13')
+            })
+
     </script>
     }
