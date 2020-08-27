@@ -9,7 +9,8 @@ namespace StockControl.web
         public static void RegisterBundles(BundleCollection bundles)
         {
             bundles.Add(new ScriptBundle("~/bundles/jquery").Include(
-                        "~/Scripts/jquery-{version}.js"));
+                        "~/Scripts/jquery-{version}.js",
+                        "~/Scripts/bootbox.min.js"));
 
             bundles.Add(new ScriptBundle("~/bundles/jqueryval").Include(
                         "~/Scripts/jquery.validate*"));
@@ -22,7 +23,7 @@ namespace StockControl.web
             bundles.Add(new ScriptBundle("~/bundles/bootstrap").Include(
                       "~/Scripts/bootstrap.js"));
 
-            bundles.Add(new ScriptBundle("~/bundles/bootbox.min.js").Include(
+            bundles.Add(new ScriptBundle("~/bundles/bootbox").Include(
                 "~/Scripts/bootbox.min.js"));
                       
 
