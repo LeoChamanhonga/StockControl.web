@@ -15,6 +15,10 @@ namespace StockControl.web.Models
                 conexao.ConnectionString = "";
                 conexao.Open();
 
+                using (var comando = new SqlCommand())
+                {
+                 
+                }
             }
           
        }
