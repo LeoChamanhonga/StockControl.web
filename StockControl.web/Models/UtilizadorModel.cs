@@ -17,7 +17,7 @@ namespace StockControl.web.Models
 
                 using (var comando = new SqlCommand())
                 {
-                 
+                    comando.Connection = conexao;
                 }
             }
           
