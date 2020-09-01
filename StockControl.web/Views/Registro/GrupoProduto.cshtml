@@ -60,7 +60,7 @@
                     <tbody>
                         @foreach (var item in Model)
                         {
-                            <tr>
+                            <tr data-id="@item.Id">
                                 <td>@item.Nome</td>
                                 <td>@{var ativo = (item.Ativo ? "SIM" : "NAO");}@ativo</td>
 
@@ -111,6 +111,7 @@
    
     <script>
 
+        //Funcao Abrir Form
         function abrir_form(dados) {
             $('#txt_nome').val(dados.Nome);
             $('#cbx_ativo').prop('checked', dados.Ativo);
@@ -135,11 +136,12 @@
         $(document).on('click', '#btn_incluir', function () {
             abrir_form({ Id: 0, Nome: '', Ativo: true });
         })
-        .on('click', '.btn-alterar', function () {
+        .on('click', '.btn_alterar', function () {
             var btn = $(this),
                 id = btn.closest('tr').attr('data-id'),
                 url = '@Url.Action("RecuperarGrupoProduto", "Registro")',
                 param = { 'id': id };
+
             $.post(url, param, function (response) {
                 if (response) {
                     abrir_form(response);
