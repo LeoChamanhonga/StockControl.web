@@ -66,8 +66,8 @@
 
                                 <td>
 
-                                    <a class="btn btn-primary btn_alterar" role="button"><i class="glyphicon glyphicon-pencil"> Alterar</i></a>
-                                    <a class="btn btn-danger btn-alterar" role="button"><i class="glyphicon glyphicon-trash"> Excluir</i></a>
+                                    <a class="btn btn-primary btn-alterar" role="button"><i class="glyphicon glyphicon-pencil"> Alterar</i></a>
+                                    <a class="btn btn-danger btn-excluir" role="button"><i class="glyphicon glyphicon-trash"> Excluir</i></a>
                                 </td>
                             </tr>
                         }                   
@@ -133,26 +133,43 @@
         }
 
         
-        $(document).on('click', '#btn_incluir', function () {
+        $(document).on('click', '#btn-incluir', function () {
             abrir_form({ Id: 0, Nome: '', Ativo: true });
         })
-        .on('click', '.btn_alterar', function () {
-            var btn = $(this),
-                id = btn.closest('tr').attr('data-id'),
-                url = '@Url.Action("RecuperarGrupoProduto", "Registro")',
-                param = { 'id': id };
+            .on('click', '.btn_alterar', function () {
+                var btn = $(this),
+                    id = btn.closest('tr').attr('data-id'),
+                    url = '@Url.Action("RecuperarGrupoProduto", "Registro")',
+                    param = { 'id': id };
 
-            $.post(url, param, function (response) {
-                if (response) {
-                    abrir_form(response);
-                }
-            });
-        })
-        .on('click', '.btn-excluir', function () {
-            alert('3');
-        })
+                $.post(url, param, function (response) {
+                    if (response) {
+                        abrir_form(response);
+                    }
+                });
+            })
+            .on('click', '.btn-excluir', function () {
+                bootbox.confirm({
+                    message: "Tem certeza?",
+                    buttons: {
+                        confirm: {
+                            label: "Sim",
+                            className: "btn-sucess"
+                        },
+                        cancel: {
+                            label: "Nao",
+                            className: "btn-danger"
+                        }
 
-
+                    },
+                    callback: function (result) {
+                        if (result) {
+                            alert('1');
+                        }
+                    }
+                });
+            })
+     
     </script>
     
 }
