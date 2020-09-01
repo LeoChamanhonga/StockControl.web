@@ -24,6 +24,15 @@ namespace StockControl.web.Controllers
             return View(_listaGrupoProduto);
         }
 
+        [HttpPost]
+        [Authorize]
+        public ActionResult RecuperarGrupoProduto(int id)
+        {
+            return Json(_listaGrupoProduto.Find(x => x.Id == id));
+        }
+
+
+
         [Authorize]
         public ActionResult MarcaProduto()
         {
