@@ -136,7 +136,7 @@
         $(document).on('click', '#btn-incluir', function () {
             abrir_form({ Id: 0, Nome: '', Ativo: true });
         })
-            .on('click', '.btn_alterar', function () {
+            .on('click', '.btn-alterar', function () {
                 var btn = $(this),
                     id = btn.closest('tr').attr('data-id'),
                     url = '@Url.Action("RecuperarGrupoProduto", "Registro")',
@@ -149,6 +149,12 @@
                 });
             })
             .on('click', '.btn-excluir', function () {
+                var btn = $(this),
+                    tr = btn.closest('tr'),
+                    id = tr.attr('data-id'),
+                    url = '@Url.Action("ExcluirGrupoProduto", "Registro")',
+                    param = { 'id': id };
+
                 bootbox.confirm({
                     message: "Tem certeza?",
                     buttons: {
@@ -164,7 +170,11 @@
                     },
                     callback: function (result) {
                         if (result) {
-                            alert('1');
+                            $.post(url, param, function (response) {
+                                if (response) {
+                                    tr.remove();
+                                }
+                            });
                         }
                     }
                 });
