@@ -46,6 +46,27 @@ namespace StockControl.web.Controllers
             return Json(ret);
         }
 
+        [HttpPost]
+        [Authorize]
+        public ActionResult GravarGrupoProduto(GrupoProdutoModel model)
+        {
+            var registoDB = _listaGrupoProduto.Find(x => x.Id == model.Id);
+
+            if (registoDB == null)
+            {
+                registoDB = model;
+                registoDB.Id = _listaGrupoProduto.Max( x => x.Id) + 1;
+                _listaGrupoProduto.Add(registoDB);
+            }
+            else
+            {
+                registoDB.Nome = model.Nome;
+                registoDB.Ativo = model.Ativo;
+            }
+
+            return Json(registoDB);
+        }
+
 
 
         [Authorize]
