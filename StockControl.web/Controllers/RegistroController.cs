@@ -31,6 +31,21 @@ namespace StockControl.web.Controllers
             return Json(_listaGrupoProduto.Find(x => x.Id == id));
         }
 
+        [HttpPost]
+        [Authorize]
+        public ActionResult ExcluirGrupoProduto(int id)
+        {
+            var ret = false;
+
+            var registoDB = _listaGrupoProduto.Find(x => x.Id == id);
+            if (registoDB != null)
+            {
+                _listaGrupoProduto.Remove(registoDB);
+                ret = true;
+            }
+            return Json(ret);
+        }
+
 
 
         [Authorize]
