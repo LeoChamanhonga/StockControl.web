@@ -44,7 +44,7 @@
 
         <div id="cabecalho-grid" class="row">
             <div class="col-md-12">
-                <a id="btn_incluir" class="btn btn-success" role="button"><i class="glyphicon glyphicon-plus-sign"> Adicionar</i></a>
+                <a id="btn_adicionar" class="btn btn-success" role="button"><i class="glyphicon glyphicon-plus-sign"> Adicionar</i></a>
             </div>
         </div>
         <div class="row">
@@ -78,6 +78,7 @@
 
     </section>
 </div>
+@Html.Hidden("id_registro")
 <div id="modal_registro" class="form-horizontal invisivel"  role="dialog">
     <fieldset>
         <div class="row">
@@ -99,7 +100,7 @@
                 <div class="form-group">
                     <div class="modal-footer">
                         <a id="btn_sair" class="btn btn-default" role="button" data-dismiss="modal"><i class="glyphicon glyphicon-remove"></i> Sair</a>
-                        <a id="btn_confirmar" class="btn btn-primary" role="button"><i class="glyphicon glyphicon-ok"></i> Gravar</a>
+                        <a id="btn_gravar" class="btn btn-primary" role="button"><i class="glyphicon glyphicon-ok"></i> Gravar</a>
                     </div>
                 </div>
             </div>
@@ -113,6 +114,7 @@
 
         //Funcao Abrir Form
         function abrir_form(dados) {
+            $('id_registro').val(dados.Id);
             $('#txt_nome').val(dados.Nome);
             $('#cbx_ativo').prop('checked', dados.Ativo);
 
@@ -132,8 +134,21 @@
             });
         }
 
+        function criar_linha_grid(dados) {
+            var ret =
+                '<tr data-id=' + dados.Id + '>' +
+                '<td>' + dados.Nome + '</td>' +
+                '<td>' + dados.ativo + '</td >'
+                '<td>' +
+                '<a class="btn btn-primary btn-alterar" role="button" style="margin-right: 3px"><i class="glyphicon glyphicon-pencil"> Alterar</i></a>' +
+                '<a class="btn btn-danger btn-excluir" role="button"><i class="glyphicon glyphicon-trash"> Excluir</i></a>' +
+                '</td>' +
+                '</tr>';
+            return ret
+        }
+
         
-        $(document).on('click', '#btn-incluir', function () {
+        $(document).on('click', '#btn_adicionar', function () {
             abrir_form({ Id: 0, Nome: '', Ativo: true });
         })
             .on('click', '.btn-alterar', function () {
@@ -179,7 +194,26 @@
                     }
                 });
             })
-     
+            .on('click', '#btn_gravar', function () {
+                var btn = $(this),
+                    url = '@Url.Action("GravarGrupoProduto", "Registro")',
+                    param = {
+                        Id: $('#id_registro').val(),
+                        Nome: $('#txt_nome').val(),
+                        Ativo: $('#cbx_ativo').prop('checked')
+                    };
+
+                $.post(url, param, function (response) {
+                    if (response) {
+                        if (param.Id == 0) {
+                            var table = $('#grid_cadastro').find('tbody'),
+                                linha = criar_linha_grid(response);
+
+                            table.append(linha);
+                        }
+                    }
+                });
+            });  
     </script>
     
 }
