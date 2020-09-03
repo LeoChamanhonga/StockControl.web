@@ -44,7 +44,7 @@
 
         <div id="cabecalho-grid" class="row">
             <div class="col-md-12">
-                <a id="btn_adicionar" class="btn btn-success" role="button"><i class="glyphicon glyphicon-plus-sign"> Adicionar</i></a>
+                <a id="btn-adicionar" class="btn btn-success" role="button"><i class="glyphicon glyphicon-plus-sign"> Adicionar</i></a>
             </div>
         </div>
         <div class="row">
@@ -138,17 +138,18 @@
             var ret =
                 '<tr data-id=' + dados.Id + '>' +
                 '<td>' + dados.Nome + '</td>' +
-                '<td>' + dados.ativo + '</td >'
+                '<td>' + (dados.Ativo ? 'SIM' : 'NAO') + '</td >' +
                 '<td>' +
                 '<a class="btn btn-primary btn-alterar" role="button" style="margin-right: 3px"><i class="glyphicon glyphicon-pencil"> Alterar</i></a>' +
                 '<a class="btn btn-danger btn-excluir" role="button"><i class="glyphicon glyphicon-trash"> Excluir</i></a>' +
                 '</td>' +
                 '</tr>';
+
             return ret
         }
 
         
-        $(document).on('click', '#btn_adicionar', function () {
+        $(document).on('click', '#btn-adicionar', function () {
             abrir_form({ Id: 0, Nome: '', Ativo: true });
         })
             .on('click', '.btn-alterar', function () {
@@ -211,6 +212,8 @@
 
                             table.append(linha);
                         }
+
+                        $('#modal_registro').parents('.bootbox').modal('hide');
                     }
                 });
             });  
