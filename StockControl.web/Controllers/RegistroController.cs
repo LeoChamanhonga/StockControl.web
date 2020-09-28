@@ -48,6 +48,7 @@ namespace StockControl.web.Controllers
         [Authorize]
         public ActionResult GravarGrupoProduto(GrupoProdutoModel model)
         {
+
             var registoDB = _listaGrupoProduto.Find(x => x.Id == model.Id);
 
             if (registoDB == null)
