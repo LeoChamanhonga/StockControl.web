@@ -197,6 +197,7 @@
             })
             .on('click', '#btn_gravar', function () {
                 var btn = $(this),
+                    id = btn.closest('tr').attr('data-id'),
                     url = '@Url.Action("GravarGrupoProduto", "Registro")',
                     param = {
                         Id: $('#id_registro').val(),
@@ -206,11 +207,20 @@
 
                 $.post(url, param, function (response) {
                     if (response) {
+
                         if (param.Id == 0) {
                             var table = $('#grid_cadastro').find('tbody'),
                                 linha = criar_linha_grid(response);
 
                             table.append(linha);
+                        }
+                        else {
+                            var linha = $('#grid_cadastro').find('tr[data-id=' + param.Id + ']').find('td');
+                            linha
+                                .eq(0).html(param.Nome).end()
+                                .eq(1).html(param.Ativo ? 'SIM' : 'NAO');
+
+                            
                         }
 
                         $('#modal_registro').parents('.bootbox').modal('hide');

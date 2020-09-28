@@ -1,8 +1,6 @@
 ﻿using StockControl.web.Models;
-using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Web;
 using System.Web.Mvc;
 
 namespace StockControl.web.Controllers
@@ -20,7 +18,7 @@ namespace StockControl.web.Controllers
         [Authorize]
         public ActionResult GrupoProduto()
         {
-           
+
             return View(_listaGrupoProduto);
         }
 
@@ -55,7 +53,7 @@ namespace StockControl.web.Controllers
             if (registoDB == null)
             {
                 registoDB = model;
-                registoDB.Id = _listaGrupoProduto.Max( x => x.Id) + 1;
+                registoDB.Id = _listaGrupoProduto.Max(x => x.Id) + 1;
                 _listaGrupoProduto.Add(registoDB);
             }
             else
