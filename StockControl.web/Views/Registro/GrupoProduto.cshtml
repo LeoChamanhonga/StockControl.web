@@ -102,6 +102,10 @@
                         <a id="btn_sair" class="btn btn-default" role="button" data-dismiss="modal"><i class="glyphicon glyphicon-remove"></i> Sair</a>
                         <a id="btn_gravar" class="btn btn-primary" role="button"><i class="glyphicon glyphicon-ok"></i> Gravar</a>
                     </div>
+                    <div id="msg_aviso" class="alert alert-warning invisivel">
+                        Falta Preencher os campos acima
+                    </div>
+                    <div id="msg_erro" class="alert alert-danger invisivel">Ops! Deu Ruim</div>
                 </div>
             </div>
         </div>        
@@ -221,10 +225,18 @@
                                 .eq(0).html(param.Nome).end()
                                 .eq(1).html(param.Ativo ? 'SIM' : 'NAO');
 
-                            
+
                         }
 
                         $('#modal_registro').parents('.bootbox').modal('hide');
+                    }
+                    else if (response.Resultado == "ERRO") {
+
+
+ 
+                    }
+                    else if (response.Resultado == "Aviso") {
+
                     }
                 });
             });  
