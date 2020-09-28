@@ -57,6 +57,7 @@ namespace StockControl.web.Controllers
             if (ModelState.IsValid)
             {
                 resultado = "Aviso";
+                mensagens = ModelState.Values.SelectMany(x => x.Errors).Select(x => x.ErrorMessage).ToList();
             }
             else
             {
