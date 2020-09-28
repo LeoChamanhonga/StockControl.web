@@ -1,4 +1,5 @@
 ﻿using StockControl.web.Models;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Web.Mvc;
@@ -48,22 +49,42 @@ namespace StockControl.web.Controllers
         [Authorize]
         public ActionResult GravarGrupoProduto(GrupoProdutoModel model)
         {
+            var resultado = "OK";
+            var mensagens = new List<string>();
+            var idSalvo = string.Empty;
 
-            var registoDB = _listaGrupoProduto.Find(x => x.Id == model.Id);
 
-            if (registoDB == null)
+            if (ModelState.IsValid)
             {
-                registoDB = model;
-                registoDB.Id = _listaGrupoProduto.Max(x => x.Id) + 1;
-                _listaGrupoProduto.Add(registoDB);
+                resultado = "Aviso";
             }
             else
             {
-                registoDB.Nome = model.Nome;
-                registoDB.Ativo = model.Ativo;
-            }
+                try
+                {
+                    var registoDB = _listaGrupoProduto.Find(x => x.Id == model.Id);
 
-            return Json(registoDB);
+                    if (registoDB == null)
+                    {
+                        registoDB = model;
+                        registoDB.Id = _listaGrupoProduto.Max(x => x.Id) + 1;
+                        _listaGrupoProduto.Add(registoDB);
+                    }
+                    else
+                    {
+                        registoDB.Nome = model.Nome;
+                        registoDB.Ativo = model.Ativo;
+                    }
+
+                }
+                catch (Exception ex)
+                {
+                    resultado = "ERRO" ;
+                }
+
+                
+            }
+            return Json(new { Resultado = resultado, Mensagens = mensagens, IdSalvo = idSalvo});
         }
 
 
