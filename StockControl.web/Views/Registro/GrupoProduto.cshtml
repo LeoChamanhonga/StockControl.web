@@ -206,11 +206,12 @@
                     };
 
                 $.post(url, param, function (response) {
-                    if (response) {
+                    if (response.Resultado == "OK") {
 
                         if (param.Id == 0) {
+                            param.Id = response.IdSalvo;
                             var table = $('#grid_cadastro').find('tbody'),
-                                linha = criar_linha_grid(response);
+                                linha = criar_linha_grid(param);
 
                             table.append(linha);
                         }
